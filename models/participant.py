@@ -3,19 +3,16 @@ import json
 from models.player import Player
 
 
-class Participant(UserDict):
+class Participants(UserDict):
     """Dict of players and score attending a tournament
 
     takes tournament's name and list of object Player
     returns dict with player: score"""
-    def __init__(self, player_list = None):
+    def __init__(self, player_list): #player_list FOR TEST ; to feed when creating object
         #self.tournament
         self.player_list = player_list
-        self.identifiant = ()
         self.data = {}
-        self.PLAYERS_FILE = "./data/players/player_list.json"
-        # initiate list
-
+        self.PLAYERS_FILE = "./data/players/player_list.json" #FOR TEST
 
     def create_participant_from_list(self, players):
         for item in players:

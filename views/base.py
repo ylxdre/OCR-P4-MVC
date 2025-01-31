@@ -7,3 +7,6 @@ class View:
         print()
         input("Saisir les scores ?")
         return True
+
+    def display_winner(self, participants):
+        pass

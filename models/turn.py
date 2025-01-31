@@ -1,5 +1,5 @@
 from random import choice, shuffle
-from models.participant import Participant
+from models.participant import Participants
 from models.match import Match
 
 class Turn:
@@ -15,35 +15,25 @@ class Turn:
         self.match_result = []
         self.player_list = []
 
-    def create_player_list(self): #not used for now
-        """name list from dict"""
-        for player in self.participants:
-            self.player_list.append([player[0], player[1]])
-
     def ramble_player_list(self):
         """shuffle player's list"""
         return shuffle(self.player_list)
 
-    def sort_scores(self, player_list):
-        """order players on score"""
-        def score(couple):
-            return couple[1]
-        return sorted(player_list, key=score)
-
     def sort_players_by_score(self):
+        """orders dict on value and returns sorted list"""
         return sorted(self.participants.items(), key=lambda t: t[1])
-
 
     def create_match(self):
         print("Liste des joueurs: ", self.player_list)
         j = 0
+        k = 0
         for i in range(0, len(self.player_list), 2):
                 j += 1
                 match = Match(self.player_list[i][0], self.player_list[i+1][0])
                 match.name = "match" + str(j)
-
-                if match in self.match_history: # If match has already been made, choose the next player
-                    match = Match(self.player_list[i][0], self.player_list[i+2][0])
+                while match in self.match_history:
+                    k += 1# If match has already been made, choose the next player
+                    match = Match(self.player_list[i][0], self.player_list[i+k][0])
                     self.match_list.append(match)
                 else:
                     self.match_list.append(match)

@@ -1,4 +1,4 @@
-from models.participant import Participant
+from models.participant import Participants
 from models.turn import Turn
 
 
@@ -25,7 +25,4 @@ class Tournament:
         self.description = "Pas encore de description"
         self.turn_list = []
 
-    def run_turns(self):
-        pass
-        #if self.current_turn == "Round 1":
 

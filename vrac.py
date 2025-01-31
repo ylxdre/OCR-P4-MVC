@@ -1,4 +1,4 @@
-from models.participant import Participant
+from models.participant import Participants
 from models.player import Player
 from models.match import Match
 from models.turn import Turn
@@ -78,7 +78,7 @@ player_list = [joueur1, joueur2, joueur3, joueur4, joueur5, joueur6]
 #print(name_from_chess_id("JF78739", player_list))
 def test2(player_list):
     # create new participants object  (dict from list)...
-    participants = Participant("Tournoi de cajou", player_list)
+    participants = Participants("Tournoi de cajou", player_list)
     # display the dict
     print("print(participants) : ", participants.create_participant_from_list())
     print(participants.data)
@@ -117,15 +117,21 @@ def test(player_list):
 
 def test3():
     # initialization
-    participants = Participant()
+    participants = Participants(player_list)
     participants.get_players_from_file() #load dict from file
     view = View()
-    tour = Turn(participants)
+    turn_nb = 1
+
     tournoi1 = Tournament("Tournoi de Cajou", participants)
     
 
     def run_turn(turn_nb):
         tour = Turn(participants.data, name = "Round"+str(turn_nb))
+        print("Commençons le", tour.name)
+        if turn_nb == 1:
+            tour.player_list = tour.sort_players_by_score()
+        else:
+            tour.player_list = tour.sort_players_by_score()
         tour.create_match()
         print(f"La liste des matchs pour le {tour.name} est :\n {tour.match_list}")
         view.prompt_for_scores()
@@ -133,11 +139,20 @@ def test3():
         print("Save \n", tour.name, tour.match_result)
         tournoi1.turn_list.append([tour.name, tour.match_result])
 
-    while i < tournoi1.total_turn:
-        if tounoi1.current_turn == 1:
+    def display_winner(participants):
+        base =
+        for i in participants:
+            if participants[i]
 
+    print("Début du", tournoi1.name, "!")
+    while turn_nb < tournoi1.total_turn:
+        tournoi1.current_turn = turn_nb
+        run_turn(turn_nb)
+        turn_nb += 1
 
-    run_turn(turn_nb)
+    print("\nLe", tournoi1.name, "est terminé.\n")
+    print("Scores finaux:\n", participants.data)
+    print("liste des tours:\n", tournoi1.turn_list)
 
     #for i in range(1, tournoi1.total_turn+1):
         #tour = Turn(participants, name = "Round"+str(i))
