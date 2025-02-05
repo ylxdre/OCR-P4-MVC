@@ -39,8 +39,8 @@ class Match:
         self.score2 = 0
 
     def __str__(self):
-        return self.player1.name + " " + self.player1.lastname + " / " + self.player2.name + " " + self.player2.lastname
-
+        #return self.player1.name + " " + self.player1.lastname + " / " + self.player2.name + " " + self.player2.lastname
+        return self.player1.ine + "/" + self.player2.ine
     def __repr__(self):
         return str(self)
 
@@ -59,7 +59,7 @@ class Round:
         self.start_time = None
         self.end_time = None
 
-    def turn_time(self):
+    def get_time(self):
         return datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
 
     def create_match2(self):
