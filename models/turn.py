@@ -1,13 +1,15 @@
 from random import choice, shuffle
-from models.participant import Participants
-from models.match import Match
+from datetime import datetime
+from time import sleep
+from participant import Participants
+from match import Match
 
 class Turn:
     """Round for tournament
 
     has name, dict of participant (object)
     """
-    def __init__(self, participants, name="Round 1"):
+    def __init__(self, participants = None, name="Round 1"):
         self.name = name
         self.participants = participants
         self.match_history = []
@@ -15,16 +17,16 @@ class Turn:
         self.match_result = []
         self.player_list = []
 
-    def ramble_player_list(self):
-        """shuffle player's list"""
-        return shuffle(self.player_list)
+    def turn_time(self):
+        return(datetime.now())
 
     def sort_players_by_score(self):
         """orders dict on value and returns sorted list"""
         return sorted(self.participants.items(), key=lambda t: t[1])
 
+
+
     def create_match(self):
-        print("Liste des joueurs: ", self.player_list)
         j = 0
         k = 0
         for i in range(0, len(self.player_list), 2):
@@ -62,3 +64,11 @@ class Turn:
                 self.match_result.append(match.data)
         return self.match_result
 
+
+
+
+tour = Turn()
+
+tour.turn_time()
+sleep(3)
+tour.turn_time()

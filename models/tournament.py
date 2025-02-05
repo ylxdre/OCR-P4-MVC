@@ -1,5 +1,5 @@
-from models.participant import Participants
-from models.turn import Turn
+from ChessTournament.models.participant import Participants
+from ChessTournament.models.turn import Turn
 
 
 class Tournament:

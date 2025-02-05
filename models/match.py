@@ -1,4 +1,4 @@
-from models.player import Player
+from player import Player
 
 class Match:
     """Get two players

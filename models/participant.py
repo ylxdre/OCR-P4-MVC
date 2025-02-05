@@ -1,6 +1,6 @@
 from collections import UserDict
 import json
-from models.player import Player
+from player import Player
 
 
 class Participants(UserDict):

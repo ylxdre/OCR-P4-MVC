@@ -15,19 +15,22 @@ class Menu:
         ]
 
     def items(self, value):
+        """displays menu depending on given value"""
         menu_type = []
         if value == 1:
             menu_type = self.ITEMS
         if value == 2:
             menu_type = self.RAPPORTS
-
         for i in menu_type:
             print(i)
-        try:
-            demande = input("Choix ? : ")
-            if demande not in range(1, len(menu_type)):
-                demande = input("Choix ? : ")
-        except ValueError:
-            print("Veuillez saisir un chiffre")
-            demande = input("Choix ? : ")
-        return demande
+        while True:
+            try:
+                choice = input("Choix ? : ")
+                if int(choice) not in range(1, len(menu_type) + 1):
+                    print("Veuillez saisir un chiffre entre 1 et", len(menu_type))
+                    print(int(choice) in range(1, len(menu_type)))
+                else:
+                    return choice
+            except ValueError:
+                print("Veuillez entrer un chiffre")
+
