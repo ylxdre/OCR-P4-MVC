@@ -29,7 +29,7 @@ class View:
         return True
 
     def display_round_info(self, round):
-        print("Infos du round", round.name, "début le", round.start_time, "fin le", round.end_time, ":\n")
+        print(round)
 
     def display_scores(self, players_list):
         print("Les scores sont :\n")

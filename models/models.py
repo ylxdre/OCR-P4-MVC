@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 
 class Tournament:
     """Chess tournament with player_list, keeps a list with all rounds"""
@@ -35,8 +36,6 @@ class Match:
     def __init__(self, player1 = None, player2 = None):
         self.player1 = player1
         self.player2 = player2
-        self.score1 = 0
-        self.score2 = 0
 
     def __str__(self):
         #return self.player1.name + " " + self.player1.lastname + " / " + self.player2.name + " " + self.player2.lastname
@@ -45,29 +44,20 @@ class Match:
     def __repr__(self):
         return str(self)
 
-    def create(self):
-        pass
-
     def get_data(self):
         return ([self.player1.ine, self.player1.score], [self.player2.ine, self.player2.score])
 
 
 class Round:
+
     def __init__(self, name = "Round 1"):
         self.name = name
-        self.match_list = []
         self.start_time = None
         self.end_time = None
+        self.match_list = []
+    def __str__(self):
+        return self.name + ": début le " + self.start_time + " et terminé le " + self.end_time
 
     def get_time(self):
-        return datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
-
-    def create_match2(self):
-        pass
-
-    def start(self):
-        self.start_time = datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
-
-    def stop(self):
-        self.end_time = datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
+        return datetime.now().strftime("%d-%m-%Y à %Hh%M,%Ss")
 
