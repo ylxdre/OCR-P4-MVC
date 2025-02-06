@@ -41,9 +41,9 @@ class Match:
     def __str__(self):
         #return self.player1.name + " " + self.player1.lastname + " / " + self.player2.name + " " + self.player2.lastname
         return self.player1.ine + "/" + self.player2.ine
+
     def __repr__(self):
         return str(self)
-
 
     def create(self):
         pass

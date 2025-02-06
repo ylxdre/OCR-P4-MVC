@@ -6,14 +6,6 @@ class View:
     def __init__(self):
         pass
 
-    def prompt_for_scores(self):
-        print()
-        input("Saisir les scores ?")
-        return True
-
-    def display_winner(self, participants):
-        pass
-
     def check_date(self):
         while True:
             date = input("Date de naissance (jj/mm/aaaa) ? : ")
@@ -21,7 +13,6 @@ class View:
                 break
             else:
                 print("La date doit être au format jj/mm/aaaa")
-
 
     def test_ine(self):
         ine_pattern = r'[a-zA-Z]{2}\d{5}'
@@ -32,6 +23,28 @@ class View:
             else:
                 print("Mauvais format d'ine")
 
+    def prompt_for_scores(self):
+        print()
+        input("Saisir les scores ?")
+        return True
+
+    def display_round_info(self, round):
+        print("Infos du round", round.name, "début le", round.start_time, "fin le", round.end_time, ":\n")
+
+    def display_scores(self, players_list):
+        print("Les scores sont :\n")
+        for i in players_list:
+            print(i.ine, i.name, i.lastname, " : ", i.score)
+
+    def prompt_for_new_player(self):
+        print("Enregistrez un nouveau joueur :\n")
+        self.lastname = input("Nom de famille ? : ")
+        self.name = input("Prénom ? : ")
+        self.birthdate = input("Date de naissance (jj/mm/aaaa) ? : ")
+        #self.birthdate = self.check_date()
+        self.ine = input("Identifiant National d'Echecs (ine) ? : ")
+        #self.ine = self.test_ine()
+        return {"Nom": self.lastname, "Prénom": self.name, "Date de naissance": self.birthdate, "INE": self.ine}
 
     def input_scores(self, match_list):
         for match in match_list:
@@ -53,5 +66,17 @@ class View:
                         print("Entrez un chiffre entre 1 et 3")
                 except ValueError:
                     print("Veuillez entrer un chiffre")
+
+    def display_winner(self, player_list):
+        winner = max(player_list, key=lambda t: t.score)
+        print("Le gagnant est :", winner.name, winner.lastname, "avec un score de :", winner.score)
+
+
+
+
+
+
+
+
 
 

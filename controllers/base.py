@@ -67,20 +67,18 @@ class Controller:
 
             self.round.start_time = self.round.get_time()
             self.round.match_list = self.create_match()
-
-            print("Liste des joueurs, après tri : ", self.tournament.players_list)
-            print("Liste des matchs du Round : ", self.round.match_list)
-            #self.view.prompt_for_scores()
-            print("saisir les scores :")
+            self.view.prompt_for_scores()
+            self.round.end_time = self.round.get_time()
             self.view.input_scores(self.round.match_list)
-            # append self.tournament.round_list with [round, match_list]
             self.sort_by_score()
+            self.view.display_round_info(self.round)
+            self.view.display_scores(self.tournament.players_list)
 
-            print("scores du round :\n")
-            for i in self.tournament.players_list:
-                print(i.ine, " : ", i.score)
+        print("Le tournoi", self.tournament.name, "est terminé !")
 
-            input("Continuer ?")
+
+
+
 
 
     def create_match(self):
@@ -101,15 +99,6 @@ class Controller:
 
         return self.round.match_list
 
-    def record_new_player(self):
-        print("Enregistrez un nouveau joueur :\n")
-        self.lastname = input("Nom de famille ? : ")
-        self.name = input("Prénom ? : ")
-        self.birthdate = input("Date de naissance (jj/mm/aaaa) ? : ")
-        #self.birthdate = self.check_date()
-        self.ine = input("Identifiant National d'Echecs (ine) ? : ")
-        #self.ine = self.test_ine()
-        return {"Nom": self.lastname, "Prénom": self.name, "Date de naissance": self.birthdate, "INE": self.ine}
 
 
     def run(self):
@@ -119,18 +108,13 @@ class Controller:
         elif menu_choice == "3":
             self.menu.items(2)
         elif menu_choice == "2":
-            self.record_new_player()
+            self.view.prompt_for_new_player()
         elif menu_choice == "1":
             print("c'est parti")
             self.create_tournament()
             self.run_tournament()
-            print("Tournoi terminé.\n Les scores sont :\n")
-            for i in self.tournament.players_list:
-                print(i.ine, " : ", i.score)
-
-
-
-
+            self.view.display_winner(self.tournament.players_list)
+            self.view.display_scores(self.tournament.players_list)
 
 
 run = Controller()
