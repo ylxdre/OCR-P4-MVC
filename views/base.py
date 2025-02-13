@@ -115,6 +115,7 @@ class View:
 
     def display_tournament_detail(self, tournament_to_display):
         i = tournament_to_display
+        print("\n***************************************************")
         print("\nNom du tournoi : ", i['name'])
         print("Lieu : ", i['location'])
         print("Description : ", i['description'])
@@ -135,6 +136,7 @@ class View:
         print("Les scores finaux :")
         for j in i['players']:
             print(j['prénom'], str.upper(j['nom']), ":", j['score'])
+        print("\n***************************************************")
 
     def display_error(self):
         print("Erreur de saisie, recommencez;")
