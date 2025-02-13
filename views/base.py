@@ -34,23 +34,6 @@ class View:
         input(f"Prêt à lancer le {round.name} ? (y)")
         return True
 
-    def display_matches(self, match_list):
-        print("Liste des matchs : ")
-        for match in match_list:
-            print(match.player1.name, match.player1.lastname.upper(),
-                  "contre", match.player2.name, match.player2.lastname.upper(),
-                  "(", match, ")"
-                  )
-
-    def display_round_info(self, round):
-        print("\n  -> ", round)
-
-    def display_scores(self, players_list):
-        print("\nLes scores sont :")
-        print("-----------------")
-        for i in players_list:
-            print(i.ine, i.name, i.lastname, ":", i.score)
-
     def prompt_for_new_player(self) -> dict:
         print("Enregistrez un nouveau joueur :\n")
         lastname = input("Nom de famille ? : ")
@@ -77,6 +60,16 @@ class View:
         tournament_details['total_round'] = int(total_round)
         return tournament_details
 
+    def prompt_tournament_to_display(self, tournament_list_to_display):
+        i = 0
+        temp_list = []
+        for tournament in tournament_list_to_display:
+            i += 1
+            print(i, ".", tournament)
+            temp_list.append(tournament)
+        num = int(input("Numéro du tournoi à afficher ? "))
+        return temp_list[num - 1]
+
     def input_scores(self, match, count):
         print("Scores pour le match", count, " :")
         while True:
@@ -91,6 +84,23 @@ class View:
             except ValueError:
                 print("Veuillez entrer un chiffre")
 
+    def display_matches(self, match_list):
+        print("Liste des matchs : ")
+        for match in match_list:
+            print(match.player1.name, match.player1.lastname.upper(),
+                  "contre", match.player2.name, match.player2.lastname.upper(),
+                  "(", match, ")"
+                  )
+
+    def display_round_info(self, round):
+        print("\n  -> ", round)
+
+    def display_scores(self, players_list):
+        print("\nLes scores sont :")
+        print("-----------------")
+        for i in players_list:
+            print(i.ine, ':', i.name, i.lastname, i.score)
+
     def display_players(self, player_list_to_display):
         print("Liste des joueurs :")
         for player in player_list_to_display:
@@ -103,23 +113,16 @@ class View:
                   "le",
                   tournament_list_to_display[tournament]['start'])
 
-    def prompt_tournament_to_display(self, tournament_list_to_display):
-        i = 0
-        temp_list = []
-        for tournament in tournament_list_to_display:
-            i += 1
-            print(i, ".", tournament)
-            temp_list.append(tournament)
-        num = int(input("Numéro du tournoi à afficher ? "))
-        return temp_list[num - 1]
-
     def display_tournament_detail(self, tournament_to_display):
         i = tournament_to_display
         print("Nom du tournoi : ", i['name'])
         print("Lieu : ", i['location'])
+        print("Description : ", i['description'])
         print("Le tournoi a débuté le : ", i['start'])
         print("Et s'est terminé le : ", i['end'])
-        print("Les participants étaient : \n", i['players'])
+        print("\nLes participants étaient : ")
+        for j in i['players'] :
+            print(j['ine'], "-", j['prénom'], str.upper(j['nom']))
         print("\nLes matches et leurs résultats étaient :")
         for j in i['rounds']:
             print(j['Nom'])
@@ -129,6 +132,9 @@ class View:
             for k in j['Matches']:
                 print(k)
             print()
+        print("Les scores finaux :")
+        for j in i['players']:
+            print(j['prénom'], str.upper(j['nom']), ":", j['score'])
 
     def display_error(self):
         print("Erreur de saisie, recommencez;")
