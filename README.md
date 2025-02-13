@@ -27,6 +27,7 @@ source env/bin/activate
 cloner le dépôt, aller dans le bon dossier
 ```
 git clone https://mcstn.fr/gitea/Yann/Projet4.git
+cd Projet4
 ```
 
 ## Exécution
