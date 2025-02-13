@@ -89,10 +89,8 @@ class Application:
     def sort_by_score(self):
         self.tournament.players_list.sort(key=lambda t: t.score, reverse=True)
 
-    def shuffle_players(self):
-        return shuffle(self.tournament.players_list)
-
     def create_tournament(self):
+        """update existing tournament with data from view"""
         print("Nouveau tournoi ! \n")
         tournament_details = self.view.prompt_for_tournament()
         self.tournament.name = tournament_details['name']
@@ -110,6 +108,8 @@ class Application:
             self.menu_manager()
 
     def run_tournament(self):
+        """creates all round iteration
+        """
         shuffle(self.tournament.players_list)
         self.view.display_players(self.tournament.players_list)
         for each_round in range(1, self.tournament.total_round + 1):
@@ -135,13 +135,10 @@ class Application:
 
         print("\nLe tournoi", self.tournament.name, "est terminé !\n")
 
-    def get_match_info(self, match_list):
-        matches = []
-        for i in match_list:
-            matches.append(i.get_data())
-        return matches
-
     def check_match(self, match, match_history):
+        """check if match is in list
+        For future usage
+        """
         for item in match_history:
             if match in item:
                 return True
