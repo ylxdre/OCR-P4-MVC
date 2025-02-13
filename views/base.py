@@ -104,7 +104,7 @@ class View:
     def display_players(self, player_list_to_display):
         print("Liste des joueurs :")
         for player in player_list_to_display:
-            print(player.data())
+            print(f"{player.name} {str.upper(player.lastname)} ({player.ine})")
 
     def display_tournaments(self, tournament_list_to_display):
         print("Liste des tournois : ")
