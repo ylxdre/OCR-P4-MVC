@@ -1,6 +1,6 @@
-from ChessTournament.models.models import (Player, Round, Match,
+from models.models import (Player, Round, Match,
                                            MatchHistory)
-from ChessTournament.models.models import DATAPATH, PLAYERFILE, TOURNAMENTFILE
+from models.models import DATAPATH, PLAYERFILE, TOURNAMENTFILE
 
 
 from random import shuffle
@@ -109,9 +109,7 @@ class Application:
             self.tournament.players_list = self.save.player_load()
             self.save.tournament_write(self.tournament)
         else:
-            print("Placez un fichier joueur dans le répertoire data"
-                  "ou créez des nouveaux joueurs depuis le menu")
-            print()
+            self.view.display_player_instructions()
             self.menu_manager()
 
     def run_tournament(self):
@@ -246,20 +244,3 @@ class Application:
                 self.view.display_winner(self.tournament.players_list)
                 self.view.display_scores(self.tournament.players_list)
                 self.menu_manager()
-
-
-class CheckMatch:
-    pass
-
-
-class MenuManager:
-    pass
-
-
-class TournamentManager:
-    def __init__(self):
-        pass
-
-
-class UserManager:
-    pass

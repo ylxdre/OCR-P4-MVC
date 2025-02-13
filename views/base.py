@@ -140,3 +140,8 @@ class View:
 
     def display_error(self):
         print("Erreur de saisie, recommencez;")
+
+    def display_player_instructions(self):
+        print("Placez un fichier joueur dans le répertoire data "
+              "ou créez des nouveaux joueurs depuis le menu")
+        print()
