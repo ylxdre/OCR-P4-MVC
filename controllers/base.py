@@ -101,6 +101,7 @@ class Application:
         self.tournament.date_end = tournament_details['date_end']
         self.tournament.description = tournament_details['description']
         self.tournament.total_round = tournament_details['total_round']
+        self.tournament.round_list = []
         if self.save.player_load():
             self.tournament.players_list = self.save.player_load()
             self.save.tournament_write(self.tournament)
