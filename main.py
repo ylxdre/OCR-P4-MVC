@@ -1,7 +1,7 @@
-from ChessTournament.models.models import Tournament
-from ChessTournament.controllers.base import Application, Save
-from ChessTournament.views.base import View
-from ChessTournament.views.menu import Menu
+from models.models import Tournament
+from controllers.base import Application, Save
+from views.base import View
+from views.menu import Menu
 
 
 def main():
