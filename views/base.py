@@ -121,7 +121,7 @@ class View:
         print("Le tournoi a débuté le : ", i['start'])
         print("Et s'est terminé le : ", i['end'])
         print("\nLes participants étaient : ")
-        for j in i['players'] :
+        for j in i['players']:
             print(j['ine'], "-", j['prénom'], str.upper(j['nom']))
         print("\nLes matches et leurs résultats étaient :")
         for j in i['rounds']:
