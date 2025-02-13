@@ -45,6 +45,9 @@ Si vous souhaitez spécifier une liste de joueurs au format JSON, il vous faut l
 dans le répertoire `data`  
 Sinon, vous pouvez créer des joueurs via le menu
 
+Le répertoire, nom des fichiers joueurs et tournois sont des constantes de models.py
+Ils sont placés dans le dossier `data`
+
 ## Auteur
 
 Yann  <yann@needsome.coffee>
