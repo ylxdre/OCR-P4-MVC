@@ -22,6 +22,7 @@ class Tournament:
         self.round_list = []
         self.current_round = 0
         self.players_list = players_list
+        self.scores = []
         self.description = "Pas de description"
 
     def __str__(self):
@@ -67,7 +68,8 @@ class Player:
             'prénom': self.name,
             'nom': self.lastname,
             'date de naissance': self.birthdate,
-            'ine': self.ine
+            'ine': self.ine,
+            'score': self.score
         }
         return player_dict
 

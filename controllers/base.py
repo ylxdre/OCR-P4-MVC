@@ -1,7 +1,5 @@
-from ChessTournament.models.models import (Player, Round, Match,
-                                           MatchHistory)
-from ChessTournament.models.models import DATAPATH, PLAYERFILE, TOURNAMENTFILE
-
+from models.models import (Player, Round, Match, MatchHistory)
+from models.models import DATAPATH, PLAYERFILE, TOURNAMENTFILE
 
 from random import shuffle
 import os
@@ -63,8 +61,6 @@ class Save:
         data = {
             tournament.name: tournament.data()
         }
-        print(data)
-
         if self.load_file(TOURNAMENTFILE):
             data_tmp = self.load_file(TOURNAMENTFILE)
             data_tmp[tournament.name] = tournament.data()
@@ -109,13 +105,12 @@ class Application:
             self.tournament.players_list = self.save.player_load()
             self.save.tournament_write(self.tournament)
         else:
-            print("Placez un fichier joueur dans le répertoire data"
-                  "ou créez des nouveaux joueurs depuis le menu")
-            print()
+            self.view.display_player_instructions()
             self.menu_manager()
 
     def run_tournament(self):
         shuffle(self.tournament.players_list)
+        self.view.display_players(self.tournament.players_list)
         for each_round in range(1, self.tournament.total_round + 1):
             self.tournament.current_round += 1
             self.round = Round()
@@ -125,6 +120,7 @@ class Application:
             self.round.start_time = self.round.get_time()
             # create matches TODO : check from history
             self.round.match_list = self.create_match()
+            self.match_history.add(self.round.match_list)
             # display matches
             self.view.display_matches(self.round.match_list)
             self.view.prompt_for_scores()
@@ -132,7 +128,6 @@ class Application:
             self.scores(self.round.match_list)
             self.sort_by_score()
             self.tournament.round_list.append(self.round.save())
-            print("après maj", self.tournament.round_list)
             self.save.tournament_write(self.tournament)
             self.view.display_round_info(self.round)
             self.view.display_scores(self.tournament.players_list)
@@ -163,9 +158,15 @@ class Application:
         for i in range(0, len(self.tournament.players_list), 2):
             j += 1
             match = Match()
-            match.player1 = self.tournament.players_list[i]
-            match.player2 = self.tournament.players_list[i+1]
-            match_list.append(match)
+            try:
+                match.player1 = self.tournament.players_list[i]
+                match.player2 = self.tournament.players_list[i+1]
+                if self.match_history.check(match):
+                    # match.player2 = self.tournament.players_list[i+2]
+                    print("deja joue")
+                match_list.append(match)
+            except IndexError:
+                pass
         return match_list
 
     def scores(self, match_list) -> list:
@@ -197,7 +198,7 @@ class Application:
             # Quit
             if menu_choice == "4":
                 print("Bye")
-
+                break
             # Rapports
             elif menu_choice == "3":
                 rapport_choice = self.menu.items(2)
@@ -243,23 +244,4 @@ class Application:
                 print("c'est parti")
                 self.create_tournament()
                 self.run_tournament()
-                self.view.display_winner(self.tournament.players_list)
-                self.view.display_scores(self.tournament.players_list)
                 self.menu_manager()
-
-
-class CheckMatch:
-    pass
-
-
-class MenuManager:
-    pass
-
-
-class TournamentManager:
-    def __init__(self):
-        pass
-
-
-class UserManager:
-    pass
