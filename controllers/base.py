@@ -196,7 +196,7 @@ class Application:
             # Quit
             if menu_choice == "4":
                 print("Bye")
-                break
+                quit()
             # Rapports
             elif menu_choice == "3":
                 rapport_choice = self.menu.items(2)
