@@ -115,7 +115,7 @@ class View:
 
     def display_tournament_detail(self, tournament_to_display):
         i = tournament_to_display
-        print("Nom du tournoi : ", i['name'])
+        print("\nNom du tournoi : ", i['name'])
         print("Lieu : ", i['location'])
         print("Description : ", i['description'])
         print("Le tournoi a débuté le : ", i['start'])
