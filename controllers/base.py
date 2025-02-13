@@ -1,8 +1,7 @@
-from ChessTournament.models.models import (Player, Tournament, Round, Match,
+from ChessTournament.models.models import (Player, Round, Match,
                                            MatchHistory)
 from ChessTournament.models.models import DATAPATH, PLAYERFILE, TOURNAMENTFILE
-from ChessTournament.views.menu import Menu
-from ChessTournament.views.base import View
+
 
 from random import shuffle
 import os
@@ -33,7 +32,6 @@ class Save:
         with open(file, "w") as json_file:
             json_file.write(json.dumps(data_tmp))
         return "Done."
-
 
     def player_write(self, player) -> bool:
         data_tmp = []
@@ -193,7 +191,6 @@ class Application:
             matches.append(match.get_data())
         return matches
 
-
     def menu_manager(self):
         menu_choice = self.menu.items(1)
         while True:
@@ -218,13 +215,14 @@ class Application:
                 # Display list of tournaments
                 elif rapport_choice == "2":
                     if self.save.tournament_load():
-                        self.view.display_tournaments(self.save.tournament_load())
+                        self.view.display_tournaments(
+                            self.save.tournament_load())
                     input("?")
 
                 # display tournament's details
                 elif rapport_choice == "3":
                     temp = {}
-                    if  self.save.tournament_load():
+                    if self.save.tournament_load():
                         temp = self.save.tournament_load()
                         name = self.view.prompt_tournament_to_display(temp)
                         if name in temp:
@@ -265,5 +263,3 @@ class TournamentManager:
 
 class UserManager:
     pass
-
-
