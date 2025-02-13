@@ -11,7 +11,7 @@ class Menu:
             "[1] Afficher la liste des joueurs",
             "[2] Afficher l'historique des tournois",
             "[3] Afficher le détail d'un tournoi",
-            "[4] Quitter"
+            "[4] Retour"
         ]
 
     def items(self, value):
@@ -19,18 +19,20 @@ class Menu:
         menu_type = []
         if value == 1:
             menu_type = self.ITEMS
+            print()
+            print("MENU GENERAL")
         if value == 2:
             menu_type = self.RAPPORTS
+            print()
+            print("MENU RAPPORTS")
         for i in menu_type:
             print(i)
         while True:
             try:
                 choice = input("Choix ? : ")
                 if int(choice) not in range(1, len(menu_type) + 1):
-                    print("Veuillez saisir un chiffre entre 1 et", len(menu_type))
-                    print(int(choice) in range(1, len(menu_type)))
+                    print("Choisissez un chiffre entre 1 et", len(menu_type))
                 else:
                     return choice
             except ValueError:
                 print("Veuillez entrer un chiffre")
-
