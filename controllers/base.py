@@ -1,7 +1,5 @@
-from models.models import (Player, Round, Match,
-                                           MatchHistory)
+from models.models import (Player, Round, Match, MatchHistory)
 from models.models import DATAPATH, PLAYERFILE, TOURNAMENTFILE
-
 
 from random import shuffle
 import os
@@ -63,8 +61,6 @@ class Save:
         data = {
             tournament.name: tournament.data()
         }
-        print(data)
-
         if self.load_file(TOURNAMENTFILE):
             data_tmp = self.load_file(TOURNAMENTFILE)
             data_tmp[tournament.name] = tournament.data()
@@ -130,7 +126,6 @@ class Application:
             self.scores(self.round.match_list)
             self.sort_by_score()
             self.tournament.round_list.append(self.round.save())
-            print("après maj", self.tournament.round_list)
             self.save.tournament_write(self.tournament)
             self.view.display_round_info(self.round)
             self.view.display_scores(self.tournament.players_list)
@@ -241,6 +236,4 @@ class Application:
                 print("c'est parti")
                 self.create_tournament()
                 self.run_tournament()
-                self.view.display_winner(self.tournament.players_list)
-                self.view.display_scores(self.tournament.players_list)
                 self.menu_manager()

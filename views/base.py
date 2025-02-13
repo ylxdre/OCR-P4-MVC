@@ -91,14 +91,6 @@ class View:
             except ValueError:
                 print("Veuillez entrer un chiffre")
 
-    def display_winner(self, player_list):
-        winner = max(player_list, key=lambda t: t.score)
-        print("Le gagnant est :",
-              winner.name,
-              winner.lastname,
-              "avec un score de :",
-              winner.score)
-
     def display_players(self, player_list_to_display):
         print("Liste des joueurs :")
         for player in player_list_to_display:
