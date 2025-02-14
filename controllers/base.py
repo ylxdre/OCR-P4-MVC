@@ -37,7 +37,7 @@ class Save:
             data_tmp = (self.load_file(PLAYERFILE))
         data_tmp.append(player)
         self.write_file(data_tmp, PLAYERFILE)
-        self.view.player_ok()
+        self.view.ok_player()
         return True
 
     def player_load(self) -> list:
