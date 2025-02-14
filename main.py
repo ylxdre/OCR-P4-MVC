@@ -6,8 +6,8 @@ from views.menu import Menu
 
 def main():
     tournament = Tournament()
-    save = Save()
     view = View()
+    save = Save(view)
     menu = Menu()
     application = Application(tournament=tournament,
                               save=save,

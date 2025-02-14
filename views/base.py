@@ -29,6 +29,11 @@ class View:
         input("Saisir les scores ? (y)")
         return True
 
+    def prompt_next(self):
+        print()
+        input("?")
+        return True
+
     def prompt_for_round(self, round):
         print()
         input(f"Prêt à lancer le {round.name} ? (y)")
@@ -141,7 +146,28 @@ class View:
     def display_error(self):
         print("Erreur de saisie, recommencez;")
 
+    def display_format_error(self):
+        print("\n**** Erreur de format de fichier")
+
+    def display_file_error(self, file):
+        print(f"\n**** Pas de fichier {file} trouvé :/")
+
     def display_player_instructions(self):
         print("Placez un fichier joueur dans le répertoire data "
               "ou créez des nouveaux joueurs depuis le menu")
         print()
+
+    def display_quit(self):
+        print("Bye !")
+
+    def display_error_already(self):
+        print("Déjà joué")
+
+    def ok_player(self):
+        print("\nJoueur créé.")
+
+    def ok_go(self):
+        print("\n!!! C'est parti !!!\n")
+
+    def ok_done(self, name):
+        print(f"\nLe tournoi {name} est terminé !\n")

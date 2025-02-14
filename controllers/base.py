@@ -7,8 +7,8 @@ import json
 
 
 class Save:
-    def __init__(self):
-        pass
+    def __init__(self, view):
+        self.view = view
 
     def load_file(self, file):
         try:
@@ -22,7 +22,7 @@ class Save:
             return data_tmp
 
         except json.decoder.JSONDecodeError:
-            print("Erreur de format sur le fichier")
+            self.view.display_format_error()
         except FileNotFoundError:
             return False
 
@@ -37,7 +37,7 @@ class Save:
             data_tmp = (self.load_file(PLAYERFILE))
         data_tmp.append(player)
         self.write_file(data_tmp, PLAYERFILE)
-        print("Joueur créé !")
+        self.view.player_ok()
         return True
 
     def player_load(self) -> list:
@@ -55,7 +55,7 @@ class Save:
 
             return data_list
         else:
-            print("\n**** Pas de fichier joueur trouvé :/\n")
+            self.view.display_file_error("joueur")
 
     def tournament_write(self, tournament):
         data = {
@@ -74,7 +74,7 @@ class Save:
             data_tmp = self.load_file(TOURNAMENTFILE)
             return data_tmp
         else:
-            print("\n**** Pas de fichier tournoi trouvé :/ \n")
+            self.view.display_file_error("tournoi")
 
 
 class Application:
@@ -91,7 +91,6 @@ class Application:
 
     def create_tournament(self):
         """update existing tournament with data from view"""
-        print("Nouveau tournoi ! \n")
         tournament_details = self.view.prompt_for_tournament()
         self.tournament.name = tournament_details['name']
         self.tournament.location = tournament_details['location']
@@ -133,7 +132,7 @@ class Application:
             self.view.display_round_info(self.round)
             self.view.display_scores(self.tournament.players_list)
 
-        print("\nLe tournoi", self.tournament.name, "est terminé !\n")
+        self.view.ok_done(self.tournament.name)
 
     def check_match(self, match, match_history):
         """check if match is in list
@@ -161,7 +160,7 @@ class Application:
                 match.player2 = self.tournament.players_list[i+1]
                 if self.match_history.check(match):
                     # match.player2 = self.tournament.players_list[i+2]
-                    print("deja joue")
+                    self.view.display_error_already()
                 match_list.append(match)
             except IndexError:
                 pass
@@ -195,7 +194,7 @@ class Application:
         while True:
             # Quit
             if menu_choice == "4":
-                print("Bye")
+                self.view.display_quit()
                 quit()
             # Rapports
             elif menu_choice == "3":
@@ -209,14 +208,14 @@ class Application:
                 elif rapport_choice == "1":
                     if self.save.player_load():
                         self.view.display_players(self.save.player_load())
-                    input("?")
+                    self.view.prompt_next()
 
                 # Display list of tournaments
                 elif rapport_choice == "2":
                     if self.save.tournament_load():
                         self.view.display_tournaments(
                             self.save.tournament_load())
-                    input("?")
+                    self.view.prompt_next()
 
                 # display tournament's details
                 elif rapport_choice == "3":
@@ -234,12 +233,12 @@ class Application:
             elif menu_choice == "2":
                 joueur = self.view.prompt_for_new_player()
                 self.save.player_write(joueur)
-                input("Retour ?")
+                self.view.prompt_next()
                 self.menu_manager()
 
             # create new tournament
             elif menu_choice == "1":
-                print("c'est parti")
+                self.view.ok_go()
                 self.create_tournament()
                 self.run_tournament()
                 self.menu_manager()
