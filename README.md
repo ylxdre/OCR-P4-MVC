@@ -1,60 +1,51 @@
-# Gestion des tournois
+# OCR / DA Python - Project 4
 
-## Introduction
+## Chess tournament management
 
-Ces instructions vous permettent de :
-- récupérer le programme, 
-- d'installer l'environnement nécessaire à son exécution, 
-- de l'exécuter,
-- de l'utiliser
+### Introduction
 
-### Pré-requis
+These instructions allow you to :
+- get the program
+- install the required environment
+- run and use it
 
+### Requirement
+1. packages
 ```
 paquets : python 3.11, python3.11-venv, git 
 ```
 
 ### Installation
 
-Voici les étapes à suivre pour avoir un environnement d'exécution opérationnel :
-
-créer l'environnement virtuel 
-
+1. Create the virtual environment
 ```
 python3.11 -m venv env
 source env/bin/activate
 ```
-cloner le dépôt, aller dans le bon dossier
-```
-git clone https://mcstn.fr/gitea/Yann/Projet4.git
-cd Projet4
-```
+2. clone this repo
 
-## Exécution
 
-exécuter la commande :
+## Execution
+
+Run the following command :
 ```
 python3 main.py
 ```
 
-## Utilisation  
+## Use
 
-Toutes les actions se font via le menu affiché.
-Il y a deux menus : général et rapport.
-
-Si vous souhaitez spécifier une liste de joueurs au format JSON, il vous faut la placer  
-dans le répertoire `data`  
-Sinon, vous pouvez créer des joueurs via le menu
-
-Le répertoire, nom des fichiers joueurs et tournois sont des constantes de models.py  
-Ils sont placés dans le dossier `data`
-
-## Auteur
-
-Yann  <yann@needsome.coffee>
+The program launches a menu which is divided in two parts : general and report
 
 
+If you wan to specify a JSON player list you must place it in the `data` folder  
+You can also create players from the menu
+
+
+## Author
+
+YaL <yann@needsome.coffee>
 
 ## License
 
-N/A
+MIT License  
+Copyright (c) 2025 
