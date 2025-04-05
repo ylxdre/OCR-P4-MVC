@@ -45,7 +45,3 @@ You can also create players from the menu
 
 YaL <yann@needsome.coffee>
 
-## License
-
-MIT License  
-Copyright (c) 2025 
